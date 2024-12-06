@@ -1,10 +1,9 @@
 package com.github.julianps.modelmapper;
 
-import static junit.framework.TestCase.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
@@ -14,7 +13,7 @@ public class ValueConverterTest {
 
 	private ModelMapper modelMapper;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -69,7 +68,7 @@ public class ValueConverterTest {
 		assertThat(destList.list.get(1))
 				.isNotNull()
 				.isInstanceOf(StubFactory.Dest.class);
-		assertTrue(destList.list.get(1).x == 5);
+		assertThat(destList.list.get(1).x).isEqualTo(5);
 	}
 
 
@@ -89,7 +88,7 @@ public class ValueConverterTest {
 		assertThat(destArray.array.get(1))
 				.isNotNull()
 				.isInstanceOf(StubFactory.Dest.class);
-		assertTrue(destArray.array.get(1).x == 5);
+		assertThat(destArray.array.get(1).x).isEqualTo(5);
 	}
 
 	@Test
@@ -108,6 +107,6 @@ public class ValueConverterTest {
 		assertThat(destSet.set.head())
 				.isNotNull()
 				.isInstanceOf(StubFactory.Dest.class);
-		assertTrue(destSet.set.head().x == 5);
+		assertThat(destSet.set.head().x).isEqualTo(5);
 	}
 }
